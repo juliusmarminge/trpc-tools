@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
@@ -59,11 +60,11 @@ const Home: NextPage = () => {
 
 export default Home;
 
-type TechnologyCardProps = {
+interface TechnologyCardProps {
   name: string;
   description: string;
   documentation: string;
-};
+}
 
 const TechnologyCard = ({
   name,

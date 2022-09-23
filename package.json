@@ -1,5 +1,5 @@
 {
-  "name": "trpc-rhf",
+  "name": "root",
   "version": "0.0.0",
   "private": true,
   "workspaces": [
@@ -7,10 +7,10 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
+    "build": "turbo build",
+    "dev": "turbo dev --parallel",
     "format": "prettier --write '**/*.{ts,tsx,cjs,mjs,json,md,mdx}'",
-    "lint": "eslint . --cache --cache-strategy content --ignore-path .gitignore"
+    "lint": "turbo lint"
   },
   "dependencies": {},
   "devDependencies": {

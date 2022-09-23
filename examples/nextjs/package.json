@@ -1,0 +1,34 @@
+{
+  "name": "nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^4.3.9",
+    "@trpc/client": "^10.0.0-proxy-beta.5",
+    "@trpc/next": "^10.0.0-proxy-beta.5",
+    "@trpc/react": "^10.0.0-proxy-beta.5",
+    "@trpc/server": "^10.0.0-proxy-beta.5",
+    "next": "12.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "superjson": "1.9.1",
+    "zod": "^3.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.1.6",
+    "typescript": "^4.8.3"
+  },
+  "ct3aMetadata": {
+    "initVersion": "6.0.0-next.2dd37e1"
+  }
+}
