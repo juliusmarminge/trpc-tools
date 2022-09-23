@@ -24,7 +24,7 @@ export const useTRPCForm = <
     any,
     inferProcedureOutput<TProcedure>
   >,
-  formOpts: UseFormProps,
+  formOpts: UseFormProps<z.input<TValidator>>,
 ) => {
   const actions = mutation.useMutation();
   const form = useZodForm(mutation.input);
