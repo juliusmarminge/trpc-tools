@@ -10,7 +10,7 @@ const t = initTRPC.create({
 export const PostValidator = z.object({
   author: z.string(),
   title: z.string(),
-  body: z.string(),
+  body: z.string().min(10),
 });
 
 export type Post = z.output<typeof PostValidator> & { id: string };

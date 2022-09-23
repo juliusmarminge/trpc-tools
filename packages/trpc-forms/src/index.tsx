@@ -21,16 +21,22 @@ export const useTRPCForm = <
   >,
   formOpts?: UseFormProps<OmitNullish<TInput>>
 ) => {
+  const form = useForm<OmitNullish<TInput>>(formOpts);
+
   const actions = mutation.useMutation({
     ...mutationOpts,
     onError(error) {
-      console.error(error);
+      console.error("onError", error.message);
+      // TODO: handle errors
+      console.log("errors before", form.formState.errors);
+      // @ts-expect-error
+      form.setError("body", { type: "manual", message: error.message });
+      console.log("errors after", form.formState.errors);
     },
   });
-  const form = useForm<OmitNullish<TInput>>(formOpts);
 
   const handleSubmit = form.handleSubmit((data) => {
-    console.log(data)
+    console.log(data);
     actions.mutate(form.getValues());
   });
 
