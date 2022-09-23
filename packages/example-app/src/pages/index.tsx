@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { trpc } from "../utils/trpc";
-import { useTRPCForm } from "trpc-rhf";
+import { useTRPCForm } from "trpc-forms";
 
 // import { PostValidator } from "./api/trpc/[trpc]";
 

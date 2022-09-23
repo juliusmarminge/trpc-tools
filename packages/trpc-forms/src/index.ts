@@ -1,21 +1,18 @@
 import { TRPCClientErrorLike } from "@trpc/client";
-import type {
-  DecorateProcedure,
-  UseTRPCMutationOptions,
-} from "@trpc/react/shared";
+import type { DecorateProcedure, UseTRPCMutationOptions } from "@trpc/react/shared";
 import type {
   AnyMutationProcedure,
   inferProcedureInput,
   inferProcedureOutput,
 } from "@trpc/server";
-import React from "react";
+import { useCallback } from "react";
 import { type UseFormProps, useForm } from "react-hook-form";
 
 type OmitNullish<TType> = Omit<TType, "undefied" | "null">;
 
 export const useTRPCForm = <
   TProcedure extends AnyMutationProcedure,
-  TInput = inferProcedureInput<TProcedure>,
+  TInput = inferProcedureInput<TProcedure>
 >(
   mutation: DecorateProcedure<TProcedure, "">,
   mutationOpts?: UseTRPCMutationOptions<
@@ -23,7 +20,7 @@ export const useTRPCForm = <
     TRPCClientErrorLike<TProcedure>,
     inferProcedureOutput<TProcedure>
   >,
-  formOpts?: UseFormProps<OmitNullish<TInput>>,
+  formOpts?: UseFormProps<OmitNullish<TInput>>
 ) => {
   const actions = mutation.useMutation({
     ...mutationOpts,
@@ -33,7 +30,7 @@ export const useTRPCForm = <
   });
   const form = useForm<OmitNullish<TInput>>(formOpts);
 
-  const handleSubmit = React.useCallback(() => {
+  const handleSubmit = useCallback(() => {
     actions.mutate(form.getValues());
   }, []);
 

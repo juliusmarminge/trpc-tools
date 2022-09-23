@@ -9,14 +9,14 @@ A tRPC integration with react-hook-form to use form with as little friction as p
 ## Installation
 
 ```bash
-npx install @trpc/react react-hook-form zod
+npx install trpc-forms @trpc/react react-hook-form zod
 ```
 
 ## Usage
 
 ```tsx
 import { trpc } from "~/utils/trpc";
-import { useTRPCForm } from "trpc-rhf";
+import { useTRPCForm } from "trpc-forms";
 
 const App = () => {
   // 🤯 Pass your mutation to the hook
@@ -32,7 +32,8 @@ const App = () => {
 
   return (
     <form onSubmit={methods.handleSubmit}>
-      <input {...methods.register("title")} />
+      {/* use the ordinary react-hook-form methods */}
+      <input {...register("title")} />
       <input {...register("body")} />
       <button type="submit">Submit</button>
     </form>
