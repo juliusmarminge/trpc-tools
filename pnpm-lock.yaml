@@ -4,23 +4,9 @@ importers:
 
   .:
     specifiers:
-      '@typescript-eslint/eslint-plugin': ^5.36.0
-      '@typescript-eslint/parser': ^5.36.0
-      eslint: ^8.22.0
-      eslint-config-prettier: ^4.2.1
-      eslint-plugin-prettier: ^4.2.1
-      eslint-plugin-simple-import-sort: ^7.0.0
-      prettier: ^2.7.1
       turbo: ^1.5.2
       typescript: ^4.8.3
     devDependencies:
-      '@typescript-eslint/eslint-plugin': 5.38.0_wsb62dxj2oqwgas4kadjymcmry
-      '@typescript-eslint/parser': 5.38.0_irgkl5vooow2ydyo6aokmferha
-      eslint: 8.23.1
-      eslint-config-prettier: 4.3.0_eslint@8.23.1
-      eslint-plugin-prettier: 4.2.1_dwtqthymzsz2okhmcrbxm3kkea
-      eslint-plugin-simple-import-sort: 7.0.0_eslint@8.23.1
-      prettier: 2.7.1
       turbo: 1.5.2
       typescript: 4.8.3
 
@@ -75,10 +61,18 @@ importers:
       '@types/node': ^18.0.0
       '@types/react': ^18.0.21
       '@types/react-dom': ^18.0.6
+      '@typescript-eslint/eslint-plugin': ^5.36.0
+      '@typescript-eslint/parser': ^5.36.0
+      eslint: ^8.22.0
+      eslint-config-prettier: ^4.2.1
+      eslint-plugin-prettier: ^4.2.1
+      eslint-plugin-simple-import-sort: ^7.0.0
+      prettier: ^2.7.1
       react: ^18.2.0
       react-dom: ^18.2.0
       react-hook-form: ^7.0.0
       tsup: ^6.2.3
+      typescript: ^4.8.3
       zod: ^3.0.0
     devDependencies:
       '@hookform/resolvers': 2.9.8_react-hook-form@7.36.0
@@ -89,10 +83,18 @@ importers:
       '@types/node': 18.0.0
       '@types/react': 18.0.21
       '@types/react-dom': 18.0.6
+      '@typescript-eslint/eslint-plugin': 5.38.0_wsb62dxj2oqwgas4kadjymcmry
+      '@typescript-eslint/parser': 5.38.0_irgkl5vooow2ydyo6aokmferha
+      eslint: 8.23.1
+      eslint-config-prettier: 4.3.0_eslint@8.23.1
+      eslint-plugin-prettier: 4.2.1_dwtqthymzsz2okhmcrbxm3kkea
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@8.23.1
+      prettier: 2.7.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.36.0_react@18.2.0
-      tsup: 6.2.3
+      tsup: 6.2.3_typescript@4.8.3
+      typescript: 4.8.3
       zod: 3.19.1
 
 packages:
@@ -2181,7 +2183,7 @@ packages:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
     dev: false
 
-  /tsup/6.2.3:
+  /tsup/6.2.3_typescript@4.8.3:
     resolution: {integrity: sha512-J5Pu2Dx0E1wlpIEsVFv9ryzP1pZ1OYsJ2cBHZ7GrKteytNdzaSz5hmLX7/nAxtypq+jVkVvA79d7S83ETgHQ5w==}
     engines: {node: '>=14'}
     hasBin: true
@@ -2211,6 +2213,7 @@ packages:
       source-map: 0.8.0-beta.0
       sucrase: 3.27.0
       tree-kill: 1.2.2
+      typescript: 4.8.3
     transitivePeerDependencies:
       - supports-color
       - ts-node

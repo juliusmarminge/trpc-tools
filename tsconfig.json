@@ -1,6 +1,4 @@
 {
-  "include": ["**/*"],
-  "exclude": ["node_modules", "dist", ".next", ".turbo"],
   "compilerOptions": {
     /* LANGUAGE COMPILATION OPTIONS */
     "target": "ESNext",
