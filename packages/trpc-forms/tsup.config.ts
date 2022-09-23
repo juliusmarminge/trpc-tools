@@ -5,7 +5,7 @@ export default defineConfig({
   dts: true,
   entry: ["src/index.ts"],
   format: ["cjs", "esm"],
-  minify: true,
+  minify: process.env.NODE_ENV === "production",
   sourcemap: true,
   target: "esnext",
   outDir: "dist",
