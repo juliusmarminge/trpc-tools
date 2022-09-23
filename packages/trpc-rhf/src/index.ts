@@ -1,3 +1,4 @@
+import { TRPCClientErrorLike } from "@trpc/client";
 import type {
   DecorateProcedure,
   UseTRPCMutationOptions,
@@ -8,29 +9,32 @@ import type {
   inferProcedureOutput,
 } from "@trpc/server";
 import React from "react";
-import { UseFormProps } from "react-hook-form";
-import { z } from "zod";
+import { type UseFormProps, useForm } from "react-hook-form";
 
-import { useZodForm } from "./utils/use-zod-form";
+type OmitNullish<TType> = Omit<TType, "undefied" | "null">;
 
 export const useTRPCForm = <
   TProcedure extends AnyMutationProcedure,
-  TValidator extends z.ZodType,
+  TInput = inferProcedureInput<TProcedure>,
 >(
-  mutation: DecorateProcedure<TProcedure>,
-  validator: TValidator,
-  mutationOpts: UseTRPCMutationOptions<
-    inferProcedureInput<TProcedure>,
-    any,
+  mutation: DecorateProcedure<TProcedure, "">,
+  mutationOpts?: UseTRPCMutationOptions<
+    TInput,
+    TRPCClientErrorLike<TProcedure>,
     inferProcedureOutput<TProcedure>
   >,
-  formOpts: UseFormProps<z.input<TValidator>>,
+  formOpts?: UseFormProps<OmitNullish<TInput>>,
 ) => {
-  const actions = mutation.useMutation();
-  const form = useZodForm(mutation.input);
+  const actions = mutation.useMutation({
+    ...mutationOpts,
+    onError(error) {
+      console.error(error);
+    },
+  });
+  const form = useForm<OmitNullish<TInput>>(formOpts);
 
-  const handleSubmit = React.useCallback(async () => {
-    await actions.mutate(form.getValues());
+  const handleSubmit = React.useCallback(() => {
+    actions.mutate(form.getValues());
   }, []);
 
   return {

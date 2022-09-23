@@ -4,7 +4,7 @@ import { useTRPCForm } from "trpc-rhf";
 import { PostValidator } from "./api/trpc/[trpc]";
 
 const Home: NextPage = () => {
-  const { handleSubmit, register } = useTRPCForm(trpc.post.add, PostValidator);
+  const { handleSubmit, register } = useTRPCForm(trpc.post.add);
   //                ^?
 
   return (
