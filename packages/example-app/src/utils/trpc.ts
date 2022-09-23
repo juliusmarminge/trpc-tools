@@ -1,4 +1,3 @@
-// src/utils/trpc.ts
 import { httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCNext } from "@trpc/next";
 import superjson from "superjson";
