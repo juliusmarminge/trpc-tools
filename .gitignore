@@ -35,6 +35,7 @@ yarn-error.log*
 .turbo/
 .cache/
 .next/
+next-env.d.ts
 .nuxt/
 tmp/
 temp/
