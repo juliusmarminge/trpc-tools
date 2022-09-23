@@ -1,15 +1,19 @@
 import type { NextPage } from "next";
 import { trpc } from "../utils/trpc";
-
-const useMyHook = (mutation: unknown) => {
-  const mutate = mutation.useMutation();
-};
+import { useTRPCForm } from "trpc-rhf";
+import { PostValidator } from "./api/trpc/[trpc]";
 
 const Home: NextPage = () => {
-  useMyHook(trpc.post.add);
+  const { handleSubmit, register } = useTRPCForm(trpc.post.add, PostValidator);
   //                ^?
 
-  return <div />;
+  return (
+    <form onSubmit={handleSubmit}>
+      <input {...register("author")} />
+      <input {...register("title")} />
+      <input {...register("body")} />
+    </form>
+  );
 };
 
 export default Home;

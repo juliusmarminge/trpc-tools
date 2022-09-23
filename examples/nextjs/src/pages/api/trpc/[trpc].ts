@@ -4,12 +4,13 @@ import { z } from "zod";
 
 const t = initTRPC.create();
 
-export type Post = {
-  id: string;
-  author: string;
-  title: string;
-  body: string;
-};
+export const PostValidator = z.object({
+  author: z.string(),
+  title: z.string(),
+  body: z.string(),
+});
+
+export type Post = z.output<typeof PostValidator> & { id: string };
 
 const posts: Post[] = [
   {
@@ -23,17 +24,15 @@ const posts: Post[] = [
 const appRouter = t.router({
   post: t.router({
     list: t.procedure.query(() => posts),
-    add: t.procedure
-      .input(
-        z.object({ author: z.string(), title: z.string(), body: z.string() }),
-      )
-      .mutation(({ input }) => {
-        const id = Math.random()
-          .toString(36)
-          .replace(/[^a-z]+/g, "")
-          .slice(0, 6);
-        posts.push({ id, ...input });
-      }),
+    add: t.procedure.input(PostValidator).mutation(({ input }) => {
+      const id = Math.random()
+        .toString(36)
+        .replace(/[^a-z]+/g, "")
+        .slice(0, 6);
+      const post = { ...input, id };
+      posts.push(post);
+      return post;
+    }),
   }),
 });
 
