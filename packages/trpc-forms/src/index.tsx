@@ -5,10 +5,9 @@ import type {
   inferProcedureInput,
   inferProcedureOutput,
 } from "@trpc/server";
-import { useCallback } from "react";
 import { type UseFormProps, useForm } from "react-hook-form";
 
-type OmitNullish<TType> = Omit<TType, "undefied" | "null">;
+type OmitNullish<TType> = Omit<TType, "undefined" | "null">;
 
 export const useTRPCForm = <
   TProcedure extends AnyMutationProcedure,
@@ -30,9 +29,10 @@ export const useTRPCForm = <
   });
   const form = useForm<OmitNullish<TInput>>(formOpts);
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = form.handleSubmit((data) => {
+    console.log(data)
     actions.mutate(form.getValues());
-  }, []);
+  });
 
   return {
     ...form,

@@ -1,8 +1,11 @@
 import { initTRPC } from "@trpc/server";
 import * as trpcNext from "@trpc/server/adapters/next";
 import { z } from "zod";
+import superjson from "superjson";
 
-const t = initTRPC.create();
+const t = initTRPC.create({
+  transformer: superjson,
+});
 
 export const PostValidator = z.object({
   author: z.string(),

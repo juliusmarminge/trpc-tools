@@ -12,6 +12,7 @@ const Home: NextPage = () => {
       <input {...register("author")} />
       <input {...register("title")} />
       <input {...register("body")} />
+      <button type="submit">Submit</button>
     </form>
   );
 };
