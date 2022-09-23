@@ -65,22 +65,28 @@ importers:
 
   packages/trpc-rhf:
     specifiers:
+      '@hookform/resolvers': ^2.0.0
       '@tanstack/react-query': ^4.3.0
       '@trpc/client': ^10.0.0-beta.5
       '@trpc/react': ^10.0.0-beta.5
       '@trpc/server': ^10.0.0-beta.5
       '@types/node': ^18.0.0
+      '@types/react': ^18.0.21
+      '@types/react-dom': ^18.0.6
       react: ^18.2.0
       react-dom: ^18.2.0
       react-hook-form: ^7.0.0
       tsup: ^6.2.3
       zod: ^3.0.0
     devDependencies:
+      '@hookform/resolvers': 2.9.8_react-hook-form@7.36.0
       '@tanstack/react-query': 4.3.9_biqbaboplfbrettd7655fr4n2y
       '@trpc/client': 10.0.0-proxy-beta.2_igwqil3kejdm7wdrjsuyactfdq
       '@trpc/react': 10.0.0-proxy-beta.2_hxauktzx6glgcpki3iyuqyldxy
       '@trpc/server': 10.0.0-proxy-beta.2
       '@types/node': 18.0.0
+      '@types/react': 18.0.21
+      '@types/react-dom': 18.0.6
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.36.0_react@18.2.0
@@ -122,6 +128,14 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@hookform/resolvers/2.9.8_react-hook-form@7.36.0:
+    resolution: {integrity: sha512-iVVjH0USq+1TqDdGkWe2M1x7Wn5OFPgVRo7CbWFsXTqqXqCaZtZcnzJu+UhljCWbthFWxWGXKLGYUDPZ04oVvQ==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
+    dependencies:
+      react-hook-form: 7.36.0_react@18.2.0
     dev: true
 
   /@humanwhocodes/config-array/0.10.5:

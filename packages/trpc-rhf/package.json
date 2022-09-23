@@ -15,6 +15,7 @@
     "lint": "eslint . --cache --cache-strategy content --ignore-path ../../.gitignore"
   },
   "peerDependencies": {
+    "@hookform/resolvers": "^2.0.0",
     "@trpc/client": "^10.0.0-beta.5",
     "@trpc/react": "^10.0.0-beta.5",
     "@trpc/server": "^10.0.0-beta.5",
@@ -22,11 +23,14 @@
     "zod": "^3.0.0"
   },
   "devDependencies": {
-    "@types/node": "^18.0.0",
+    "@hookform/resolvers": "^2.0.0",
+    "@tanstack/react-query": "^4.3.0",
     "@trpc/client": "^10.0.0-beta.5",
     "@trpc/react": "^10.0.0-beta.5",
     "@trpc/server": "^10.0.0-beta.5",
-    "@tanstack/react-query": "^4.3.0",
+    "@types/node": "^18.0.0",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.0.0",
