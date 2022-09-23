@@ -2,10 +2,18 @@ import type { NextPage } from "next";
 import { trpc } from "../utils/trpc";
 import { useTRPCForm } from "trpc-forms";
 
-// import { PostValidator } from "./api/trpc/[trpc]";
+import { z } from "zod";
+export const PostValidator = z.object({
+  author: z.string(),
+  title: z.string(),
+  body: z.string().min(10),
+});
 
 const Home: NextPage = () => {
-  const { handleSubmit, register, formState, ...rest } = useTRPCForm(trpc.post.add);
+  const { handleSubmit, register, formState, ...rest } = useTRPCForm({
+    mutation: trpc.post.add,
+    validator: PostValidator,
+  });
   const { data: posts } = trpc.post.list.useQuery();
 
   console.log(rest);

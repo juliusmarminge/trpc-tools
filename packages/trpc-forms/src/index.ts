@@ -5,33 +5,42 @@ import type {
   inferProcedureInput,
   inferProcedureOutput,
 } from "@trpc/server";
-import { type UseFormProps, useForm } from "react-hook-form";
+import { z } from "zod";
+import { useZodForm } from "./utils/use-zod-form";
+import { type UseFormProps } from "react-hook-form";
 
 type OmitNullish<TType> = Omit<TType, "undefined" | "null">;
 
-export const useTRPCForm = <
+type UseTRPCFormProps<
   TProcedure extends AnyMutationProcedure,
   TInput = inferProcedureInput<TProcedure>
->(
-  mutation: DecorateProcedure<TProcedure, "">,
-  mutationOpts?: UseTRPCMutationOptions<
+> = {
+  mutation: DecorateProcedure<TProcedure, "">;
+  validator: z.ZodType<TInput>;
+  mutationOptions?: UseTRPCMutationOptions<
     TInput,
     TRPCClientErrorLike<TProcedure>,
     inferProcedureOutput<TProcedure>
-  >,
-  formOpts?: UseFormProps<OmitNullish<TInput>>
-) => {
-  const form = useForm<OmitNullish<TInput>>(formOpts);
+  >;
+  formOptions?: UseFormProps<OmitNullish<TInput>>;
+};
+
+export const useTRPCForm = <TProcedure extends AnyMutationProcedure>({
+  mutation,
+  validator,
+  mutationOptions,
+  formOptions,
+}: UseTRPCFormProps<TProcedure>) => {
+  const form = useZodForm({
+    validator,
+    ...formOptions,
+  });
 
   const actions = mutation.useMutation({
-    ...mutationOpts,
+    ...mutationOptions,
     onError(error) {
       console.error("onError", error.message);
-      // TODO: handle errors
-      console.log("errors before", form.formState.errors);
-      // @ts-expect-error
-      form.setError("body", { type: "manual", message: error.message });
-      console.log("errors after", form.formState.errors);
+      console.log("errors", form.formState.errors);
     },
   });
 

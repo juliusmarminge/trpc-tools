@@ -2,15 +2,10 @@ import { initTRPC } from "@trpc/server";
 import * as trpcNext from "@trpc/server/adapters/next";
 import { z } from "zod";
 import superjson from "superjson";
+import { PostValidator } from "../..";
 
 const t = initTRPC.create({
   transformer: superjson,
-});
-
-export const PostValidator = z.object({
-  author: z.string(),
-  title: z.string(),
-  body: z.string().min(10),
 });
 
 export type Post = z.output<typeof PostValidator> & { id: string };

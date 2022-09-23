@@ -4,11 +4,11 @@ import { z } from "zod";
 
 export function useZodForm<TValidator extends z.ZodType>(
   props: UseFormProps<z.input<TValidator>> & {
-    schema: TValidator;
-  },
+    validator: TValidator;
+  }
 ) {
   return useForm<z.input<TValidator>>({
-    resolver: zodResolver(props.schema),
+    resolver: zodResolver(props.validator),
     ...props,
   });
 }
