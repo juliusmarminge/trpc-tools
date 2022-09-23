@@ -1,4 +1,4 @@
-# trpc-rhf
+# trpc-forms
 
 A tRPC integration with react-hook-form to use form with as little friction as possible.
 
