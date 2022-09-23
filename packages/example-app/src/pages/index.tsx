@@ -16,8 +16,6 @@ const Home: NextPage = () => {
   });
   const { data: posts } = trpc.post.list.useQuery();
 
-  console.log(rest);
-
   return (
     <div>
       <h2>Create Post</h2>
@@ -34,6 +32,12 @@ const Home: NextPage = () => {
       </form>
 
       <h2>Posts</h2>
+      {posts?.map((post) => (
+        <div key={post.id}>
+          <h3>{post.title}</h3>
+          <p>{post.body}</p>
+        </div>
+      ))}
 
       <pre>Errors: {JSON.stringify(formState, null, 2)}</pre>
     </div>
