@@ -4,7 +4,7 @@ on: [push]
 jobs:
   ci:
     runs-on: ubuntu-latest
-    name: Build and Lint
+    name: Build
     steps:
       - uses: actions/checkout@v3
         with:
@@ -37,5 +37,5 @@ jobs:
       - name: Install node_modules
         run: pnpm install
 
-      - name: Build and Lint
-        run: pnpm turbo lint build
+      - name: Build
+        run: pnpm turbo build
