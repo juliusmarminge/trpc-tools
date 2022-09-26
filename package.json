@@ -5,7 +5,8 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev --parallel",
-    "lint": "turbo lint"
+    "lint": "turbo lint",
+    "clean": "find . -name node_modules -o -name .turbo -o -name .next -o -name dist -type d -prune | xargs rm -rf"
   },
   "dependencies": {},
   "devDependencies": {
