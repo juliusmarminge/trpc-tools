@@ -33,7 +33,7 @@ body:
     attributes:
       label: Link to reproduction
       description: Please provide a link to a reproduction of the bug. This can be a link to a repository or a Stackblitz/CodeSandbox etc. Feel free to use our minimal reproduction template https://stackblitz.com/github/trpc/examples-next-minimal-starter
-      placeholder: https://trpc.io/docs/links
+      placeholder: https://stackblitz.com/github/trpc/examples-next-minimal-starter
     validations:
       required: true
   - type: textarea
