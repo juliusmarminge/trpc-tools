@@ -30,13 +30,16 @@ import { useTRPCForm } from "trpc-forms";
 
 const App = () => {
   // 🤯 Pass your mutation to the hook
-  const { register, handleSubmit } = useTRPCForm(trpc.post.create, {
+  const { register, handleSubmit } = useTRPCForm({
+    mutation: trpc.post.create,
     // 🧩 Use your ordinary trpc mutation options
-    onMutate() {
-      // ...
-    },
-    onSuccess() {
-      // ...
+    mutationOptions: {
+      onMutate() {
+        // ...
+      },
+      onSuccess() {
+        // ...
+      },
     },
   });
 

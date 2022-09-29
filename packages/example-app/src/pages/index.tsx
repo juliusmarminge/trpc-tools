@@ -10,8 +10,20 @@ export const PostValidator = z.object({
 });
 
 const Home: NextPage = () => {
-  const { handleSubmit, register, formState, ...rest } = useTRPCForm({
+  const { post } = trpc.useContext();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+    ...rest
+  } = useTRPCForm({
     mutation: trpc.post.add,
+    mutationOptions: {
+      onSuccess: () => {
+        rest.reset();
+        post.list.invalidate();
+      },
+    },
     validator: PostValidator,
   });
   const { data: posts } = trpc.post.list.useQuery();
@@ -22,12 +34,15 @@ const Home: NextPage = () => {
       <form onSubmit={handleSubmit}>
         <label htmlFor="author">Author</label>
         <input {...register("author")} />
+        {errors?.author && <p>{errors.author.message}</p>}
 
         <label htmlFor="title">Title</label>
         <input {...register("title")} />
+        {errors?.title && <p>{errors.title.message}</p>}
 
         <label htmlFor="body">Body</label>
         <input {...register("body")} />
+        {errors?.body && <p>{errors.body.message}</p>}
         <button type="submit">Submit</button>
       </form>
 
@@ -38,8 +53,6 @@ const Home: NextPage = () => {
           <p>{post.body}</p>
         </div>
       ))}
-
-      <pre>Errors: {JSON.stringify(formState, null, 2)}</pre>
     </div>
   );
 };
