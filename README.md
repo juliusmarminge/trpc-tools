@@ -29,8 +29,8 @@ import { trpc } from "~/utils/trpc";
 import { useTRPCForm } from "trpc-forms";
 
 const App = () => {
-  // 🤯 Pass your mutation to the hook
   const { register, handleSubmit } = useTRPCForm({
+    // 🤯 Pass your mutation to the hook
     mutation: trpc.post.create,
     // 🧩 Use your ordinary trpc mutation options
     mutationOptions: {
