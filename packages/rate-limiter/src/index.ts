@@ -1,3 +1,5 @@
 export * from "./types";
 
-export { default, default as createTRPCRateLimiter } from "./rate-limiter";
+import { createTRPCRateLimiter } from "./rate-limiter";
+export { createTRPCRateLimiter };
+export default createTRPCRateLimiter;

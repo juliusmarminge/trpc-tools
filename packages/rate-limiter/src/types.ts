@@ -1,12 +1,11 @@
-import { initTRPC } from "@trpc/server";
+import { AnyRootConfig } from "@trpc/server";
 
-export type TRPCRateLimitConfig = {
+export type TRPCRateLimitOptions = {
   /**
    * Your root tRPC object returned from `initTRPC.create()`
    * @required
    **/
-  // FIXME: Type
-  trpcRoot: ReturnType<typeof initTRPC.create>;
+  trpcRoot: AnyRootConfig;
 
   /**
    * Time frame in milliseconds how long to keep track of requests
@@ -25,10 +24,4 @@ export type TRPCRateLimitConfig = {
    * @default 'Too many requests, please try again later.'
    **/
   message?: string;
-
-  /**
-   * Status Code to send when a request is blocked.
-   * @default 429 (HTTP 429 - Too Many Requests)
-   **/
-  statusCode?: number;
 };
