@@ -1,29 +1,31 @@
 {
-  "name": "example-app",
+  "name": "@examples/trpc-forms",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "next dev"
+    "dev": "next dev",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@tanstack/react-query": "^4.3.9",
-    "@trpc/client": "^10.0.0-proxy-beta.7",
-    "@trpc/next": "^10.0.0-proxy-beta.7",
-    "@trpc/react": "^10.0.0-proxy-beta.7",
-    "@trpc/server": "^10.0.0-proxy-beta.7",
-    "trpc-forms": "workspace:*",
-    "next": "12.3.1",
+    "@tanstack/react-query": "^4.16.0",
+    "@trpc/client": "^10.2.0",
+    "@trpc/next": "^10.2.0",
+    "@trpc/react-query": "^10.2.0",
+    "@trpc/server": "^10.2.0",
+    "next": "13.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "superjson": "1.9.1",
-    "zod": "^3.18.0"
+    "trpc-forms": "0.0.1",
+    "zod": "^3.0.0"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
-    "typescript": "^4.8.3"
+    "eslint": "^8.28.0",
+    "typescript": "^4.9.3"
   },
   "ct3aMetadata": {
     "initVersion": "6.0.0-next.2dd37e1"
