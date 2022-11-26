@@ -8,11 +8,11 @@
   },
   "description": "tRPC integration with react-hook-form and Zod",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "format": "prettier --write .",
     "lint": "eslint . --ignore-path ../../.gitignore",
     "type-check": "tsc --noEmit"
   },

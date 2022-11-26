@@ -60,6 +60,7 @@ importers:
   examples/rate-limiter:
     specifiers:
       '@tanstack/react-query': ^4.16.0
+      '@trpc-tools/rate-limiter': ^0.0.1
       '@trpc/client': ^10.0.0
       '@trpc/next': ^10.0.0
       '@trpc/react-query': ^10.0.0
@@ -84,6 +85,7 @@ importers:
       zod: ^3.18.0
     dependencies:
       '@tanstack/react-query': 4.18.0_biqbaboplfbrettd7655fr4n2y
+      '@trpc-tools/rate-limiter': link:../../packages/rate-limiter
       '@trpc/client': 10.2.0_@trpc+server@10.2.0
       '@trpc/next': 10.2.0_yrm4hqg5wyzje7npv3bynt42o4
       '@trpc/react-query': 10.2.0_r4yn24hul7opxxiv2jafuypeby
@@ -146,37 +148,17 @@ importers:
 
   packages/rate-limiter:
     specifiers:
-      '@hookform/resolvers': ^2.0.0
-      '@tanstack/react-query': ^4.16.0
-      '@trpc/client': ^10.2.0
-      '@trpc/react-query': ^10.2.0
       '@trpc/server': ^10.2.0
       '@types/node': ^18.0.0
-      '@types/react': ^18.0.21
-      '@types/react-dom': ^18.0.6
       eslint: ^8.28.0
-      react: ^18.2.0
-      react-dom: ^18.2.0
-      react-hook-form: ^7.0.0
       tsup: ^6.2.3
       typescript: ^4.9.3
-      zod: ^3.0.0
     devDependencies:
-      '@hookform/resolvers': 2.9.8_react-hook-form@7.36.0
-      '@tanstack/react-query': 4.18.0_biqbaboplfbrettd7655fr4n2y
-      '@trpc/client': 10.2.0_@trpc+server@10.2.0
-      '@trpc/react-query': 10.2.0_r4yn24hul7opxxiv2jafuypeby
       '@trpc/server': 10.2.0
       '@types/node': 18.0.0
-      '@types/react': 18.0.21
-      '@types/react-dom': 18.0.6
       eslint: 8.28.0
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-      react-hook-form: 7.36.0_react@18.2.0
       tsup: 6.2.3_typescript@4.9.3
       typescript: 4.9.3
-      zod: 3.19.1
 
 packages:
 
