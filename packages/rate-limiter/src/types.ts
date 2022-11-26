@@ -24,4 +24,10 @@ export type TRPCRateLimitOptions = {
    * @default 'Too many requests, please try again later.'
    **/
   message?: string;
+
+  /**
+   * Wheter or not some headers should be set.
+   * @default true
+   */
+  shouldSetHeaders?: boolean;
 };

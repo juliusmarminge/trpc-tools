@@ -1,11 +1,10 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
-  const hello = trpc.example.hello.useQuery({ text: "from tRPC" });
+  const { data: greeting } = trpc.hello.useQuery();
 
   return (
     <>
@@ -42,7 +41,7 @@ const Home: NextPage = () => {
             </Link>
           </div>
           <p className="text-2xl text-white">
-            {hello.data ? hello.data.greeting : "Loading tRPC query..."}
+            {greeting ?? "Loading tRPC query..."}
           </p>
         </div>
       </main>
