@@ -1,21 +1,21 @@
 import { TRPCError } from "@trpc/server";
+import { MemoryStore } from "./store";
 import { type TRPCRateLimitOptions } from "./types";
 
-const defaultOptions: Omit<TRPCRateLimitOptions, "trpcRoot"> = {
-  windowMs: 60000,
-  max: 5,
-  message: "Too many requests, please try again later.",
-};
-
-const parseOptions = (passed: TRPCRateLimitOptions): TRPCRateLimitOptions => {
+const parseOptions = (
+  passed: TRPCRateLimitOptions,
+): Required<TRPCRateLimitOptions> => {
   return {
-    ...defaultOptions,
-    ...passed,
+    trpcRoot: passed.trpcRoot,
+    windowMs: passed.windowMs ?? 60_000,
+    max: passed.max ?? 5,
+    message: passed.message ?? "Too many requests, please try again later.",
   };
 };
 
 export const createTRPCRateLimiter = (opts: TRPCRateLimitOptions) => {
   const options = parseOptions(opts);
+  const store = new MemoryStore(options);
 
   /**
    * The middleware function that will validate the request.
@@ -25,7 +25,8 @@ export const createTRPCRateLimiter = (opts: TRPCRateLimitOptions) => {
   const middleware = (overrides: Partial<TRPCRateLimitOptions>) => {
     const opts = { ...options, ...overrides };
 
-    if (opts.max === 0) {
+    const hits = store.hits["some-id"] ?? 0;
+    if (hits > opts.max) {
       throw new TRPCError({
         code: "TOO_MANY_REQUESTS",
         message: opts.message,
