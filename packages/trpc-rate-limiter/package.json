@@ -1,5 +1,5 @@
 {
-  "name": "trpc-rate-limiter",
+  "name": "@examples/trpc-rate-limiter",
   "version": "0.0.1",
   "repository": {
     "type": "git",

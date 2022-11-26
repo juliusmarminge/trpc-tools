@@ -1,52 +1,19 @@
-# trpc-forms
+# trpc-tools
+
+## Playground for different tooling ideas around tRPC
+
+### `trpc-forms`
 
 A tRPC integration with react-hook-form to use form with as little friction as possible.
 
-> **Warning**
->
-> This is a work in progress and is not ready for production use.
+See [README.md](./packages/trpc-forms/README.md) for more info.
 
-## Installation
+### `trpc-rate-limiter`
 
-This package is built on top of `react-hook-form`, `zod` and of course, `trpc` and thus requires them to be installed as peer dependencies:
+A package to introduce rate limiting to your tRPC server.
 
-- `@trpc/react@^10.0.0 @trpc/server@^10.0.0 @trpc/client@^10.0.0`
-- `react@^18.0.0`
-- `react-hook-form@^7.0.0`
-- `@hookform/resolvers@^2.0.0`
-- `zod@^3.0.0`
+See [README.md](./packages/trpc-rate-limiter/README.md) for more info.
 
-Considering all of these are installed, install this integration with
+### `examples/**`
 
-```bash
-npx install trpc-forms
-```
-
-## Usage
-
-```tsx
-import { trpc } from "~/utils/trpc";
-import { useTRPCForm } from "trpc-forms";
-
-const App = () => {
-  // 🤯 Pass your mutation to the hook
-  const { register, handleSubmit } = useTRPCForm(trpc.post.create, {
-    // 🧩 Use your ordinary trpc mutation options
-    onMutate() {
-      // ...
-    },
-    onSuccess() {
-      // ...
-    },
-  });
-
-  return (
-    <form onSubmit={methods.handleSubmit}>
-      {/* use the ordinary react-hook-form methods */}
-      <input {...register("title")} />
-      <input {...register("body")} />
-      <button type="submit">Submit</button>
-    </form>
-  );
-};
-```
+A bunch of example apps using the different packages in this repo.
