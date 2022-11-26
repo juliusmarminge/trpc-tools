@@ -8,11 +8,11 @@ A tRPC integration with react-hook-form to use form with as little friction as p
 
 See [README.md](./packages/trpc-forms/README.md) for more info.
 
-### `trpc-rate-limiter`
+### `trpc-rate-limit`
 
 A package to introduce rate limiting to your tRPC server.
 
-See [README.md](./packages/trpc-rate-limiter/README.md) for more info.
+See [README.md](./packages/trpc-rate-limit/README.md) for more info.
 
 ### `examples/**`
 
