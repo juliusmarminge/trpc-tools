@@ -1,10 +1,10 @@
 {
-  "name": "@examples/trpc-rate-limit",
+  "name": "@trpc-tools/trpc-rate-limit",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/juliusmarminge/trpc-rhf",
-    "directory": "packages/trpc-rate-limiter"
+    "url": "https://github.com/juliusmarminge/trpc-tools",
+    "directory": "packages/trpc-rate-limit"
   },
   "description": "tRPC integration with react-hook-form and Zod",
   "main": "dist/index.js",
@@ -13,7 +13,8 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "format": "prettier --write .",
-    "lint": "eslint . --cache --cache-strategy content --ignore-path ../../.gitignore"
+    "lint": "eslint . --ignore-path ../../.gitignore",
+    "type-check": "tsc --noEmit"
   },
   "peerDependencies": {
     "@hookform/resolvers": "^2.0.0",

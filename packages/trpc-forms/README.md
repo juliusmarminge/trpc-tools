@@ -26,7 +26,7 @@ npx install trpc-forms
 
 ```tsx
 import { trpc } from "~/utils/trpc";
-import { useTRPCForm } from "trpc-forms";
+import { useTRPCForm } from "@trpc-tools/trpc-forms";
 
 const App = () => {
   // 🤯 Pass your mutation to the hook

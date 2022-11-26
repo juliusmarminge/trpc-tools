@@ -1,9 +1,9 @@
 {
-  "name": "trpc-forms",
+  "name": "@trpc-tools/trpc-forms",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/juliusmarminge/trpc-rhf",
+    "url": "https://github.com/juliusmarminge/trpc-tools",
     "directory": "packages/trpc-forms"
   },
   "description": "tRPC integration with react-hook-form and Zod",
@@ -13,7 +13,8 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "format": "prettier --write .",
-    "lint": "eslint . --ignore-path ../../.gitignore"
+    "lint": "eslint . --ignore-path ../../.gitignore",
+    "type-check": "tsc --noEmit"
   },
   "peerDependencies": {
     "@hookform/resolvers": "^2.0.0",

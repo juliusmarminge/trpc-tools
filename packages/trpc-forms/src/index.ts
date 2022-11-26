@@ -1,5 +1,8 @@
 import { TRPCClientErrorLike } from "@trpc/client";
-import type { DecorateProcedure, UseTRPCMutationOptions } from "@trpc/react/shared";
+import type {
+  DecorateProcedure,
+  UseTRPCMutationOptions,
+} from "@trpc/react-query/shared";
 import type {
   AnyMutationProcedure,
   inferProcedureInput,
@@ -15,7 +18,7 @@ import { z } from "zod";
 function useZodForm<TValidator extends z.ZodType>(
   props: UseFormProps<z.input<TValidator>> & {
     validator: TValidator;
-  }
+  },
 ) {
   return useForm<z.input<TValidator>>({
     resolver: zodResolver(props.validator),
@@ -26,9 +29,9 @@ type OmitNullish<TType> = Omit<TType, "undefined" | "null">;
 
 type UseTRPCFormProps<
   TProcedure extends AnyMutationProcedure,
-  TInput = inferProcedureInput<TProcedure>
+  TInput = inferProcedureInput<TProcedure>,
 > = {
-  mutation: DecorateProcedure<TProcedure, "">;
+  mutation: DecorateProcedure<TProcedure, "", "">;
   validator: z.ZodType<TInput>;
   mutationOptions?: UseTRPCMutationOptions<
     TInput,

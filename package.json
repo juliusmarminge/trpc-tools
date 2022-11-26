@@ -5,7 +5,8 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev --parallel",
-    "lint": "turbo lint"
+    "lint": "turbo lint",
+    "type-check": "turbo type-check"
   },
   "dependencies": {
     "@manypkg/cli": "^0.19.2",
