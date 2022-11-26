@@ -1,5 +1,5 @@
 {
-  "name": "@examples/trpc-rate-limiter",
+  "name": "@examples/rate-limiter",
   "version": "0.1.0",
   "private": true,
   "scripts": {

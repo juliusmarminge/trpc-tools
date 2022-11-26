@@ -20,10 +20,10 @@ importers:
       turbo: 1.6.3
       typescript: 4.9.3
 
-  examples/trpc-forms:
+  examples/forms:
     specifiers:
       '@tanstack/react-query': ^4.16.0
-      '@trpc-tools/trpc-forms': 0.0.1
+      '@trpc-tools/forms': 0.0.1
       '@trpc/client': ^10.2.0
       '@trpc/next': ^10.2.0
       '@trpc/react-query': ^10.2.0
@@ -40,7 +40,7 @@ importers:
       zod: ^3.0.0
     dependencies:
       '@tanstack/react-query': 4.18.0_biqbaboplfbrettd7655fr4n2y
-      '@trpc-tools/trpc-forms': link:../../packages/trpc-forms
+      '@trpc-tools/forms': link:../../packages/forms
       '@trpc/client': 10.2.0_@trpc+server@10.2.0
       '@trpc/next': 10.2.0_7p4fbqhvn2yf26bge7eay6duj4
       '@trpc/react-query': 10.2.0_r4yn24hul7opxxiv2jafuypeby
@@ -57,7 +57,7 @@ importers:
       eslint: 8.28.0
       typescript: 4.9.3
 
-  examples/trpc-rate-limiter:
+  examples/rate-limiter:
     specifiers:
       '@tanstack/react-query': ^4.16.0
       '@trpc/client': ^10.0.0
@@ -108,7 +108,7 @@ importers:
       tailwindcss: 3.2.4_postcss@8.4.14
       typescript: 4.9.3
 
-  packages/trpc-forms:
+  packages/forms:
     specifiers:
       '@hookform/resolvers': ^2.0.0
       '@tanstack/react-query': ^4.16.0
@@ -144,7 +144,7 @@ importers:
       typescript: 4.9.3
       zod: 3.19.1
 
-  packages/trpc-rate-limit:
+  packages/rate-limiter:
     specifiers:
       '@hookform/resolvers': ^2.0.0
       '@tanstack/react-query': ^4.16.0
@@ -1095,10 +1095,6 @@ packages:
     resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
     engines: {node: '>= 6'}
     dev: true
-
-  /caniuse-lite/1.0.30001410:
-    resolution: {integrity: sha512-QoblBnuE+rG0lc3Ur9ltP5q47lbguipa/ncNMyyGuqPk44FxbScWAeEO+k5fSQ8WekdAK4mWqNs1rADDAiN5xQ==}
-    dev: false
 
   /caniuse-lite/1.0.30001434:
     resolution: {integrity: sha512-aOBHrLmTQw//WFa2rcF1If9fa3ypkC1wzqqiKHgfdrXTWcU8C4gKVZT77eQAPWN1APys3+uQ0Df07rKauXGEYA==}
@@ -2596,7 +2592,7 @@ packages:
     dependencies:
       '@next/env': 13.0.5
       '@swc/helpers': 0.4.14
-      caniuse-lite: 1.0.30001410
+      caniuse-lite: 1.0.30001434
       postcss: 8.4.14
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0

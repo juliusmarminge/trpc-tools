@@ -9,7 +9,7 @@ A rate limiter for tRPC, inspired by [express-rate-limit](https://github.com/exp
 ## Usage
 
 ```tsx
-import { createTRPCRateLimit } from "trpc-rate-limit";
+import { createTRPCRateLimiter } from "@trpc-tools/rate-limiter";
 import { initTRPC } from "@trpc/server";
 
 const t = initTRPC.create();
@@ -22,7 +22,7 @@ const rateLimiter = createTRPCRateLimiter({
 });
 
 export const rateLimitedProcedure = t.procedure
-  .use(rateLimiter)
+  .use(rateLimiter.middleware())
   .query("hello", {
     resolve() {
       return "world";

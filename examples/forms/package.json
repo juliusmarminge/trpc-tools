@@ -1,5 +1,5 @@
 {
-  "name": "@examples/trpc-forms",
+  "name": "@examples/forms",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -17,7 +17,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "superjson": "1.9.1",
-    "@trpc-tools/trpc-forms": "0.0.1",
+    "@trpc-tools/forms": "0.0.1",
     "zod": "^3.0.0"
   },
   "devDependencies": {

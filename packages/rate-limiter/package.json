@@ -1,10 +1,10 @@
 {
-  "name": "@trpc-tools/trpc-rate-limit",
+  "name": "@trpc-tools/rate-limiter",
   "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/juliusmarminge/trpc-tools",
-    "directory": "packages/trpc-rate-limit"
+    "directory": "packages/rate-limiter"
   },
   "description": "tRPC integration with react-hook-form and Zod",
   "main": "dist/index.js",

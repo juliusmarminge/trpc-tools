@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { trpc } from "../utils/trpc";
-import { useTRPCForm } from "@trpc-tools/trpc-forms";
+import { useTRPCForm } from "@trpc-tools/forms";
 
 import { z } from "zod";
 export const PostValidator = z.object({

@@ -1,10 +1,10 @@
 {
-  "name": "@trpc-tools/trpc-forms",
+  "name": "@trpc-tools/forms",
   "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/juliusmarminge/trpc-tools",
-    "directory": "packages/trpc-forms"
+    "directory": "packages/forms"
   },
   "description": "tRPC integration with react-hook-form and Zod",
   "main": "dist/index.js",

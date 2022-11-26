@@ -1,5 +1,5 @@
 import { t } from "../trpc";
-import { PostValidator } from "../../pages";
+import { PostValidator } from "../../pages/index";
 import { z } from "zod";
 
 export type Post = z.output<typeof PostValidator> & { id: string };
