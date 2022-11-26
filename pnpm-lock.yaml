@@ -144,7 +144,7 @@ importers:
       typescript: 4.9.3
       zod: 3.19.1
 
-  packages/trpc-rate-limiter:
+  packages/trpc-rate-limit:
     specifiers:
       '@hookform/resolvers': ^2.0.0
       '@tanstack/react-query': ^4.16.0
