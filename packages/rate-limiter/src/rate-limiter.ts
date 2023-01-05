@@ -10,7 +10,7 @@ const parseOptions = (
     windowMs: passed.windowMs ?? 60_000,
     max: passed.max ?? 5,
     message: passed.message ?? "Too many requests, please try again later.",
-    shouldSetHeaders: true,
+    headers: true,
   };
 };
 
@@ -22,12 +22,16 @@ export const createTRPCRateLimiter = (opts: TRPCRateLimitOptions) => {
     const ip = "blah";
     const { totalHits, resetTime } = await store.increment(ip);
 
-    console.log("[RateLimiter] headers", ctx.res.headers);
-
     if (totalHits > options.max) {
       const retryAfter = Math.ceil((resetTime.getTime() - Date.now()) / 1000);
-      if (opts.shouldSetHeaders) {
-        ctx?.res?.setHeader("Retry-After", retryAfter);
+      if (opts.headers) {
+        if ("setHeader" in ctx && typeof ctx.setHeader === "function") {
+          ctx.setHeader("Retry-After", retryAfter);
+        } else {
+          console.log(
+            "[WARN: RateLimiter] You set `headers: true` but `setHeader` is not in the context",
+          );
+        }
       }
 
       throw new TRPCError({

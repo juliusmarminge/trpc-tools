@@ -1,11 +1,21 @@
-import { AnyRootConfig } from "@trpc/server";
+import { RootConfig } from "@trpc/server";
 
-export type TRPCRateLimitOptions = {
+export type TRPCRateLimitOptions<
+  TContext extends Record<string, unknown>,
+  TMeta extends Record<string, unknown>,
+  TErrorShape,
+  TTransformer,
+> = {
   /**
    * Your root tRPC object returned from `initTRPC.create()`
    * @required
    **/
-  trpcRoot: AnyRootConfig;
+  trpcRoot: RootConfig<{
+    ctx: TContext;
+    meta: TMeta;
+    errorShape: TErrorShape;
+    transformer: TTransformer;
+  }>;
 
   /**
    * Time frame in milliseconds how long to keep track of requests
@@ -29,5 +39,5 @@ export type TRPCRateLimitOptions = {
    * Wheter or not some headers should be set.
    * @default true
    */
-  shouldSetHeaders?: boolean;
+  headers?: boolean;
 };
