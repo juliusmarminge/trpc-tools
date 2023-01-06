@@ -1,36 +1,19 @@
-import type { NextPage } from "next";
-import { trpc } from "../utils/trpc";
-import { useTRPCForm } from "trpc-form";
 import { z } from "zod";
-
-const UserList = () => {
-  const { data: users } = trpc.user.list.useQuery();
-  return (
-    <div style={{ width: "200px" }}>
-      <h2>Users</h2>
-      {users?.map((user) => (
-        <div key={user.id}>
-          <h3>{user.name}</h3>
-          <p>{user.email}</p>
-        </div>
-      ))}
-    </div>
-  );
-};
+import { useTRPCForm } from "trpc-form";
+import { api } from "../utils/api";
 
 export const UserAddValidator = z.object({
   name: z.string().min(3),
   email: z.string().email(),
 });
 
-const Home: NextPage = () => {
-  const utils = trpc.useContext();
+export default function Home() {
+  const utils = api.useContext();
 
   const form = useTRPCForm({
-    mutation: trpc.user.add,
+    mutation: api.user.add,
     validator: UserAddValidator,
     onSuccess: () => utils.user.list.invalidate(),
-    onSubmit: (e) => e.preventDefault(),
   });
 
   return (
@@ -61,35 +44,19 @@ const Home: NextPage = () => {
       </div>
     </div>
   );
-};
+}
 
-export default Home;
-
-export const Demo = () => {
-  const utils = trpc.useContext();
-
-  const form = useTRPCForm({
-    mutation: trpc.user.add,
-    validator: UserAddValidator,
-    onSuccess: () => utils.user.list.invalidate(),
-    onSubmit: (e) => e.preventDefault(),
-  });
-
+function UserList() {
+  const { data: users } = api.user.list.useQuery();
   return (
-    <form ref={form.ref}>
-      <label htmlFor={form.name.id()}>Name</label>
-      <input name={form.name.name()} />
-      {form.name.error((e) => (
-        <p style={{ color: "red" }}>{e.message}</p>
+    <div style={{ width: "200px" }}>
+      <h2>Users</h2>
+      {users?.map((user) => (
+        <div key={user.id}>
+          <h3>{user.name}</h3>
+          <p>{user.email}</p>
+        </div>
       ))}
-
-      <label htmlFor={form.email.id()}>Email</label>
-      <input name={form.email.name()} />
-      {form.email.error((e) => (
-        <p style={{ color: "red" }}>{e.message}</p>
-      ))}
-
-      <button type="submit">Submit</button>
-    </form>
+    </div>
   );
-};
+}
