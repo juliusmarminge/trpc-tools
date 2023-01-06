@@ -4,7 +4,7 @@ import { useTRPCForm } from "@trpc-tools/form";
 import { z } from "zod";
 
 export const UserValidator = z.object({
-  // name: z.string().min(3),
+  name: z.string().min(3),
   email: z.string().email(),
   // password: z.string().min(3),
   // confirmPassword: z.string().min(3),

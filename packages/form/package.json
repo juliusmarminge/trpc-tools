@@ -13,7 +13,7 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "lint": "eslint . --ignore-path ../../.gitignore",
+    "lint": "eslint . --ignore-pattern ../../.gitignore",
     "type-check": "tsc --noEmit"
   },
   "peerDependencies": {

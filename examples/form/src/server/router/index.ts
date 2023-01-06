@@ -12,7 +12,7 @@ const users: User[] = [
     id: "0",
     name: "Julius",
     email: "julius@test.com",
-    password: "supersecret",
+    // password: "supersecret",
   },
 ];
 
@@ -29,7 +29,7 @@ const userRouter = t.router({
       id,
       name: input.name,
       email: input.email,
-      password: input.password,
+      // password: input.password,
     };
     users.push(user);
     return user;
