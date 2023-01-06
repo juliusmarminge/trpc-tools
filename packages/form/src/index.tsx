@@ -10,6 +10,7 @@ function parseOptions<TProcedure extends AnyMutationProcedure>(
   return {
     ...opts,
     validateOn: opts.validateOn ?? ["submit", "change"],
+    preventDefault: opts.preventDefault ?? true,
   };
 }
 
@@ -63,7 +64,8 @@ export function useTRPCForm<TProcedure extends AnyMutationProcedure>(
       const formState = validate();
       if (!formState.success) return e.preventDefault();
 
-      opts.onSubmit({
+      if (opts.preventDefault) e.preventDefault();
+      opts.onSubmit?.({
         preventDefault: () => e.preventDefault(),
         target: e.target as HTMLFormElement,
         data: formState.data,

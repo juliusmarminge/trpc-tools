@@ -1,42 +1,32 @@
-import { t } from "../trpc";
+import { createTRPCRouter, publicProcedure } from "../trpc";
 import { UserAddValidator } from "../../pages/index";
 import { z } from "zod";
 
-export type User = Omit<
-  z.output<typeof UserAddValidator> & { id: string },
-  "confirmPassword"
->;
-
+type User = z.output<typeof UserAddValidator> & { id: string };
 const users: User[] = [
   {
-    id: "0",
+    id: "1",
     name: "Julius",
     email: "julius@test.com",
-    // password: "supersecret",
   },
 ];
 
-const userRouter = t.router({
-  list: t.procedure.query(() =>
-    users.map((user) => ({ id: user.id, name: user.name, email: user.email })),
-  ),
-  add: t.procedure.input(UserAddValidator).mutation(({ input }) => {
-    const id = Math.random()
-      .toString(36)
-      .replace(/[^a-z]+/g, "")
-      .slice(0, 6);
+const userRouter = createTRPCRouter({
+  list: publicProcedure.query(() => {
+    return users;
+  }),
+  add: publicProcedure.input(UserAddValidator).mutation(({ input }) => {
     const user = {
-      id,
+      id: Math.random().toFixed(6),
       name: input.name,
       email: input.email,
-      // password: input.password,
     };
     users.push(user);
     return user;
   }),
 });
 
-export const appRouter = t.router({
+export const appRouter = createTRPCRouter({
   user: userRouter,
 });
 

@@ -27,11 +27,20 @@ export type UseTRPCFormProps<
   validator: ZodType<inferProcedureInput<TProcedure>>;
 
   /** Called when the form is submitted */
-  onSubmit: (
+  onSubmit?: (
     event: TRPCFormSubmitEvent<inferProcedureInput<TProcedure>>,
   ) => void;
 
-  /** When to validate the form */
+  /**
+   * Whether preventDefault should be called before the onSubmit handler
+   * @default true
+   **/
+  preventDefault?: boolean;
+
+  /**
+   * When to validate the form
+   * @default ["change", "submit"]
+   **/
   validateOn?: ("change" | "submit")[];
 } & UseTRPCMutationOptions<
   inferProcedureInput<TProcedure>,
