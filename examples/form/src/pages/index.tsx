@@ -39,9 +39,7 @@ export default function Home() {
         </form>
       </div>
 
-      <div>
-        <pre>Values: {JSON.stringify(form.validation, null, 2)} </pre>
-      </div>
+      <pre>Values: {JSON.stringify(form.validation, null, 2)} </pre>
     </div>
   );
 }
