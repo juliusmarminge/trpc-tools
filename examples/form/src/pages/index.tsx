@@ -2,7 +2,6 @@ import { z } from "zod";
 import { useTRPCForm } from "trpc-form";
 import { api } from "../utils/api";
 import Link from "next/link";
-import Image from "next/image";
 
 export const userAddInput = z.object({
   name: z.string().min(3),
