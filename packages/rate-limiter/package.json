@@ -20,7 +20,7 @@
     "@trpc/server": "^10.2.0"
   },
   "devDependencies": {
-    "@trpc/server": "^10.7.0",
+    "@trpc/server": "^10.8.1",
     "@types/node": "^18.11.18",
     "eslint": "^8.31.0",
     "tsup": "^6.2.3",
