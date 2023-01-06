@@ -1,13 +1,13 @@
 import { createTRPCRouter, publicProcedure } from "../trpc";
-import { UserAddValidator } from "../../pages/index";
+import { userAddInput } from "../../pages/index";
 import { z } from "zod";
 
-type User = z.output<typeof UserAddValidator> & { id: string };
+type User = z.output<typeof userAddInput> & { id: string };
 const users: User[] = [
   {
-    id: "1",
-    name: "Julius",
-    email: "julius@test.com",
+    id: Math.random().toFixed(6),
+    name: "Test",
+    email: "test@test.com",
   },
 ];
 
@@ -15,7 +15,7 @@ const userRouter = createTRPCRouter({
   list: publicProcedure.query(() => {
     return users;
   }),
-  add: publicProcedure.input(UserAddValidator).mutation(({ input }) => {
+  add: publicProcedure.input(userAddInput).mutation(({ input }) => {
     const user = {
       id: Math.random().toFixed(6),
       name: input.name,

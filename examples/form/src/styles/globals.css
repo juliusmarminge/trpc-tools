@@ -1,44 +1,9 @@
-body {
-  width: 100vw;
-  height: 100vh;
-  background: #18181b;
-  padding: 0 20px;
-  color: #e2e8f0;
-  font-family: "Roboto", sans-serif;
-  overflow: hidden;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-p {
-  margin: 0;
-  padding: 0;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-}
-
-form label {
-  font-weight: 600;
-  margin-top: 10px;
-}
-
-form input,
-form button {
-  padding: 5px 10px;
-  border: 1px solid;
-  border-radius: 5px;
-}
-
-form button {
-  background: #3f3f46;
-  color: #e2e8f0;
-  margin-top: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-form button:hover {
-  background: #2f2f36;
+@layer components {
+  body {
+    @apply bg-zinc-900 text-zinc-200;
+  }
 }
