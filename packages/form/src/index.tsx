@@ -55,7 +55,6 @@ export function useTRPCForm<TProcedure extends AnyMutationProcedure>(
   const handleSubmit = useCallback(
     (e: SubmitEvent) => {
       const formState = validate();
-      console.log("[TRPCForm onSubmit]:", formState);
       if (!formState.success) return e.preventDefault();
 
       opts.onSubmit({
