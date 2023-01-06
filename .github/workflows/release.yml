@@ -43,7 +43,7 @@ jobs:
         run: pnpm install
 
       - name: Build
-        run: pnpm turbo build
+        run: pnpm turbo --filter "./packages/*" build
 
       - name: Create Release
         uses: changesets/action@v1.4.1

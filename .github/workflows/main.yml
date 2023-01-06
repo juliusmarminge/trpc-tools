@@ -43,7 +43,7 @@ jobs:
         run: pnpm install
 
       - name: Build, lint and type-check
-        run: pnpm turbo build lint type-check
+        run: pnpm turbo --filter "./packages/*" build lint type-check
 
       - name: Check workspaces
         run: pnpm manypkg check
