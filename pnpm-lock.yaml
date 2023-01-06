@@ -27,7 +27,6 @@ importers:
   examples/form:
     specifiers:
       '@tanstack/react-query': ^4.20.9
-      '@trpc-tools/form': 0.0.1
       '@trpc/client': ^10.8.1
       '@trpc/next': ^10.8.1
       '@trpc/react-query': ^10.8.1
@@ -41,11 +40,11 @@ importers:
       react: ^18.2.0
       react-dom: ^18.2.0
       superjson: 1.9.1
+      trpc-form: 0.0.1
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
       '@tanstack/react-query': 4.20.9_biqbaboplfbrettd7655fr4n2y
-      '@trpc-tools/form': link:../../packages/form
       '@trpc/client': 10.8.1_@trpc+server@10.8.1
       '@trpc/next': 10.8.1_2m5lrw5itftxrkpjug26jfzba4
       '@trpc/react-query': 10.8.1_4ojdwnpnbtgkfc47umwlqljm64
@@ -54,6 +53,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       superjson: 1.9.1
+      trpc-form: link:../../packages/form
       zod: 3.20.2
     devDependencies:
       '@types/node': 18.11.18

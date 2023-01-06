@@ -1,16 +1,33 @@
 {
-  "name": "@trpc-tools/form",
-  "private": false,
+  "name": "trpc-form",
+  "description": "form library tightly coupled with trpc mutations",
   "version": "0.0.1",
+  "keywords": [
+    "trpc",
+    "form",
+    "forms",
+    "react",
+    "zod"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/juliusmarminge/trpc-tools",
-    "directory": "packages/zorm"
+    "directory": "packages/form"
   },
-  "description": "tRPC integration with react-zorm",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
