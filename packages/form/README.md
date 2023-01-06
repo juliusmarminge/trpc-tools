@@ -2,7 +2,7 @@
 
 ## API
 
-````ts
+```ts
 type UseFormOptions = {
   /** Your tRPC mutation, e.g. trpc.post.add */
   mutation: DecorateProcedure,
