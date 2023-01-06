@@ -63,7 +63,7 @@ export default function Home() {
         >
           Checkout this example on GitHub
         </Link>
-        <p>tldr;</p>
+        <p>tldr; 👇👇👇</p>
         <img
           height={800}
           width={400}
