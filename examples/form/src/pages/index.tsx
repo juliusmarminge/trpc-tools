@@ -64,3 +64,32 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const Demo = () => {
+  const utils = trpc.useContext();
+
+  const form = useTRPCForm({
+    mutation: trpc.user.add,
+    validator: UserAddValidator,
+    onSuccess: () => utils.user.list.invalidate(),
+    onSubmit: (e) => e.preventDefault(),
+  });
+
+  return (
+    <form ref={form.ref}>
+      <label htmlFor={form.name.id()}>Name</label>
+      <input name={form.name.name()} />
+      {form.name.error((e) => (
+        <p style={{ color: "red" }}>{e.message}</p>
+      ))}
+
+      <label htmlFor={form.email.id()}>Email</label>
+      <input name={form.email.name()} />
+      {form.email.error((e) => (
+        <p style={{ color: "red" }}>{e.message}</p>
+      ))}
+
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
