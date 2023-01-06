@@ -10,5 +10,5 @@
   "access": "restricted",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@examples/**"]
+  "ignore": ["@examples/**", "@trpc-tools/rate-limiter"]
 }
