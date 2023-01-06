@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { trpc } from "../utils/trpc";
-import { useTRPCForm } from "@trpc-tools/form";
+import { useTRPCForm } from "trpc-form";
 import { z } from "zod";
 
 const UserList = () => {
