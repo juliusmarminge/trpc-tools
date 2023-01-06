@@ -4,9 +4,9 @@
 
 ### `trpc-forms`
 
-A form library tightly coupled with your tRPC mutations. Built on web standard APIs.
+A form library tightly coupled with your tRPC mutations.
 
-See [README.md](./packages/form/README.md) for more info.
+See [README.md](./packages/form/README.md) for more info, or play around with [an example](https://codesandbox.io/s/github/juliusmarminge/trpc-tools/tree/main/examples/form).
 
 ### `trpc-rate-limit`
 

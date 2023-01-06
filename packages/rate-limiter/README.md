@@ -5,6 +5,7 @@ A rate limiter for tRPC, inspired by [express-rate-limit](https://github.com/exp
 > **Warning**
 >
 > This is a work in progress and is not ready for production use.
+>
 > Discontinued. See [OrJDev/trpc-limiter](https://github.com/OrJDev/trpc-limiter) instead.
 
 ## Usage
