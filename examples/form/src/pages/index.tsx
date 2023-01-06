@@ -15,6 +15,11 @@ function AddUserForm() {
     mutation: api.user.add,
     validator: userAddInput,
     onSuccess: () => utils.user.list.invalidate(),
+
+    // Demonstation purposes of loading state
+    onSubmit: async () => {
+      await new Promise((r) => setTimeout(r, 2000));
+    },
   });
 
   return (
@@ -42,8 +47,12 @@ function AddUserForm() {
         ))}
       </div>
 
-      <button type="submit" className="bg-blue-500 rounded-md p-2">
-        Submit
+      <button
+        type="submit"
+        className="bg-blue-500 rounded-md p-2 disabled:bg-blue-300"
+        disabled={form.isSubmitting}
+      >
+        {form.isSubmitting ? "Submitting..." : "Submit"}
       </button>
     </form>
   );
@@ -54,18 +63,33 @@ export default function Home() {
 
   return (
     <div className="flex max-w-4xl mx-auto py-16 gap-14">
-      <div className="space-y-2">
+      <div>
         <h1 className="text-3xl font-bold">trpc-form</h1>
         <p>A form library for your tRPC mutations.</p>
+        <p>
+          Like it? Give{" "}
+          <Link
+            className="underline text-blue-300"
+            href="https://github.com/juliusmarminge/trpc-tools/blob/main/packages/form"
+          >
+            the repo a star
+          </Link>
+          , and I'll continue!
+        </p>
+
         <Link
           href="https://github.com/juliusmarminge/trpc-tools/blob/main/examples/form/src/pages/index.tsx"
           className="underline text-blue-300"
         >
           Checkout this example on GitHub
         </Link>
-        <p>tldr; 👇👇👇</p>
+        <p className="mt-4">tldr;</p>
+
+        <code className="my-4">$ npm install trpc-form</code>
+
+        <p>Then 👇👇👇</p>
         <img
-          height={800}
+          height={700}
           width={400}
           alt="Demo"
           src="https://user-images.githubusercontent.com/51714798/211056243-4dce2f4f-7d75-4104-b3ec-5773158a13f7.png"
