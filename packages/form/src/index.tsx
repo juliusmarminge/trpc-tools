@@ -1,7 +1,8 @@
-import type { AnyMutationProcedure, inferProcedureInput } from "@trpc/server";
-import { useCallback, useRef, useState } from "react";
-import { z } from "zod";
-import { UseTRPCFormProps } from "./types";
+import type { AnyMutationProcedure } from "@trpc/server";
+import { useCallback, useMemo, useRef, useState } from "react";
+import { SafeParseReturnType, z } from "zod";
+import { createFlatProxy, createRecursiveProxy } from "./proxy";
+import { UseTRPCFormProps, UseTRPCFormResult } from "./types";
 
 function parseOptions<TProcedure extends AnyMutationProcedure>(
   opts: UseTRPCFormProps<TProcedure>,
@@ -15,24 +16,25 @@ function parseOptions<TProcedure extends AnyMutationProcedure>(
 function parseForm<TData>(form: HTMLFormElement, schema: z.ZodType<TData>) {
   const formData = new FormData(form);
   const entries = Object.fromEntries(formData.entries());
-  console.log("[TRPCForm parseForm]:", entries);
-
   return schema.safeParse(entries);
 }
 
 export function useTRPCForm<TProcedure extends AnyMutationProcedure>(
   props: UseTRPCFormProps<TProcedure>,
 ) {
-  type TSchema = inferProcedureInput<TProcedure>;
+  type TValidation = SafeParseReturnType<
+    TProcedure["_def"]["_input_in"],
+    TProcedure["_def"]["_input_out"]
+  >;
   const opts = parseOptions(props);
 
   const actions = opts.mutation.useMutation({
     ...opts,
   });
-  const { path: _path } = actions.trpc;
+  // const { path: formNamespace } = actions.trpc;
 
   const formRef = useRef<HTMLFormElement>();
-  const [validation, setValidation] = useState<TSchema | null>(null);
+  const [validation, setValidation] = useState<TValidation | null>(null);
 
   const validate = useCallback(() => {
     if (!formRef.current) throw new Error("Error: Form not mounted");
@@ -86,16 +88,37 @@ export function useTRPCForm<TProcedure extends AnyMutationProcedure>(
     [handleChange, handleSubmit],
   );
 
-  // TODO:
-  const fields = {};
-  const errors = {};
+  return useMemo(
+    () =>
+      createFlatProxy<UseTRPCFormResult<TProcedure>>((key) => {
+        if (key === "form") return formRef.current;
+        if (key === "ref") return callbackRef;
+        if (key === "validate") return validate;
+        if (key === "validation") return validation;
 
-  return {
-    fields,
-    errors,
-    validate,
-    validation,
-    ref: callbackRef,
-    form: formRef.current,
-  };
+        return createRecursiveProxy(($path, args) => {
+          const fullPath = [key, ...$path];
+          const lastArg = fullPath.pop();
+
+          if (lastArg === "name" || lastArg === "id") {
+            return `${fullPath.join(".")}`;
+          }
+
+          if (lastArg === "error") {
+            const errors = !validation?.success ? validation?.error : undefined;
+            const error = errors?.issues.find(
+              (e) => JSON.stringify(e.path) === JSON.stringify(fullPath),
+            );
+
+            if (typeof args[0] === "function") {
+              if (error) return args[0](error);
+              return null;
+            }
+
+            return error ?? null;
+          }
+        });
+      }),
+    [callbackRef, validate, validation],
+  );
 }

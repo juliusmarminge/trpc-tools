@@ -8,7 +8,7 @@ import {
   inferProcedureInput,
   inferProcedureOutput,
 } from "@trpc/server";
-import { ZodType } from "zod";
+import { ZodIssue, ZodType } from "zod";
 
 export type TRPCFormSubmitEvent<TData> = {
   preventDefault: () => void;
@@ -36,3 +36,30 @@ export type UseTRPCFormProps<
   TRPCClientErrorLike<TProcedure>,
   inferProcedureOutput<TProcedure>
 >;
+
+type ErrorGetter = {
+  /** Returns the ZodIssue error */
+  (): ZodIssue | undefined;
+  /** Callback to render an Error message if there's an error  */
+  (cb: (err: ZodIssue) => JSX.Element | null): JSX.Element | null;
+};
+
+type DecorateField<TSchema extends ZodType> = {
+  [TKey in keyof TSchema["_input"]]: TSchema["_input"][TKey] extends object
+    ? DecorateField<TSchema["_input"][TKey]>
+    : {
+        name: () => string;
+        id: () => string;
+        error: ErrorGetter;
+      };
+};
+
+export type UseTRPCFormResult<
+  TProcedure extends AnyMutationProcedure,
+  TInput = inferProcedureInput<TProcedure>,
+> = {
+  ref: () => void;
+  form: HTMLFormElement | null;
+  validate: () => ReturnType<ZodType<TInput>["safeParse"]>;
+  validation: ReturnType<ZodType<TInput>["safeParse"]>;
+} & DecorateField<ZodType<TInput>>;

@@ -1,9 +1,9 @@
 import { t } from "../trpc";
-import { UserValidator } from "../../pages/index";
+import { UserAddValidator } from "../../pages/index";
 import { z } from "zod";
 
 export type User = Omit<
-  z.output<typeof UserValidator> & { id: string },
+  z.output<typeof UserAddValidator> & { id: string },
   "confirmPassword"
 >;
 
@@ -20,7 +20,7 @@ const userRouter = t.router({
   list: t.procedure.query(() =>
     users.map((user) => ({ id: user.id, name: user.name, email: user.email })),
   ),
-  add: t.procedure.input(UserValidator).mutation(({ input }) => {
+  add: t.procedure.input(UserAddValidator).mutation(({ input }) => {
     const id = Math.random()
       .toString(36)
       .replace(/[^a-z]+/g, "")
