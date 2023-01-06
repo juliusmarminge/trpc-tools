@@ -1,4 +1,0 @@
-{
-  // Required for Next.js on Stackblitz
-  "presets": ["next/babel"]
-}
