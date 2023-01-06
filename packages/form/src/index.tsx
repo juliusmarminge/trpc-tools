@@ -28,12 +28,18 @@ export function useTRPCForm<TProcedure extends AnyMutationProcedure>(
   >;
   const opts = parseOptions(props);
 
+  const formRef = useRef<HTMLFormElement>();
+
   const actions = opts.mutation.useMutation({
     ...opts,
+    onSuccess: (...args) => {
+      formRef.current?.reset();
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      opts.onSuccess?.(...args);
+    },
   });
   // const { path: formNamespace } = actions.trpc;
 
-  const formRef = useRef<HTMLFormElement>();
   const [validation, setValidation] = useState<TValidation | null>(null);
 
   const validate = useCallback(() => {

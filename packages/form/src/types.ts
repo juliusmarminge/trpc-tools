@@ -18,21 +18,23 @@ export type TRPCFormSubmitEvent<TData> = {
 
 export type UseTRPCFormProps<
   TProcedure extends AnyMutationProcedure,
-  TInput = inferProcedureInput<TProcedure>,
+  TPath extends string = "",
 > = {
   /** Your tRPC mutation */
-  mutation: DecorateProcedure<TProcedure, unknown, "">;
+  mutation: DecorateProcedure<TProcedure, unknown, TPath>;
 
   /** Your Zod Validator to use for validation */
-  validator: ZodType<TInput>;
+  validator: ZodType<inferProcedureInput<TProcedure>>;
 
   /** Called when the form is submitted */
-  onSubmit: (event: TRPCFormSubmitEvent<TInput>) => void;
+  onSubmit: (
+    event: TRPCFormSubmitEvent<inferProcedureInput<TProcedure>>,
+  ) => void;
 
   /** When to validate the form */
   validateOn?: ("change" | "submit")[];
 } & UseTRPCMutationOptions<
-  TInput,
+  inferProcedureInput<TProcedure>,
   TRPCClientErrorLike<TProcedure>,
   inferProcedureOutput<TProcedure>
 >;
