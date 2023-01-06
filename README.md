@@ -4,11 +4,14 @@
 
 ### `trpc-forms`
 
-A tRPC integration with react-hook-form to use form with as little friction as possible.
+A form library tightly coupled with your tRPC mutations. Built on web standard APIs.
 
-See [README.md](./packages/trpc-forms/README.md) for more info.
+See [README.md](./packages/form/README.md) for more info.
 
 ### `trpc-rate-limit`
+
+> **Warning**
+> Discontinued. See [OrJDev/trpc-limiter](https://github.com/OrJDev/trpc-limiter) instead.
 
 A package to introduce rate limiting to your tRPC server.
 
