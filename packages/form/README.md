@@ -2,7 +2,11 @@
 
 ## Demo
 
-Also on [![StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/juliusmarminge/trpc-tools/tree/main/examples/form)
+Open in CodeSandbox:
+
+<a href="https://codesandbox.io/s/github/juliusmarminge/trpc-tools/tree/main/examples/form">
+  <img width="200" src="https://user-images.githubusercontent.com/51714798/211045303-2603f241-412b-4c4e-8a34-476ae7ba189b.png" />
+</a>
 
 ```tsx
 const userAdd = z.object({
