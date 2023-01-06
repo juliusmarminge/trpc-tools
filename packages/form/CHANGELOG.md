@@ -1,5 +1,11 @@
 # trpc-form
 
+## 0.2.0
+
+### Minor Changes
+
+- [#10](https://github.com/juliusmarminge/trpc-tools/pull/10) [`200b63e`](https://github.com/juliusmarminge/trpc-tools/commit/200b63e758efffe367393bf80a5bb14b434f3241) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - feat: add loading state `isSubmitting`
+
 ## 0.1.1
 
 ### Patch Changes
