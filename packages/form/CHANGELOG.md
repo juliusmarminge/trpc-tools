@@ -1,5 +1,11 @@
 # trpc-form
 
+## 0.1.1
+
+### Patch Changes
+
+- [#6](https://github.com/juliusmarminge/trpc-tools/pull/6) [`bba020e`](https://github.com/juliusmarminge/trpc-tools/commit/bba020e0cfbe12e5bf15935098b23f0f8ac2c1fe) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - fix some types
+
 ## 0.1.0
 
 ### Minor Changes
