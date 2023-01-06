@@ -43,13 +43,13 @@ const Home: NextPage = () => {
           <label htmlFor={form.name.id()}>Name</label>
           <input name={form.name.name()} />
           {form.name.error((e) => (
-            <p>{e.message}</p>
+            <p style={{ color: "red" }}>{e.message}</p>
           ))}
 
           <label htmlFor={form.email.id()}>Email</label>
           <input name={form.email.name()} />
           {form.email.error((e) => (
-            <p>{e.message}</p>
+            <p style={{ color: "red" }}>{e.message}</p>
           ))}
 
           <button type="submit">Submit</button>
