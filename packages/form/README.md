@@ -1,5 +1,51 @@
 # trpc-form
 
+## API
+
+````ts
+type UseFormOptions = {
+  /** Your tRPC mutation, e.g. trpc.post.add */
+  mutation: DecorateProcedure,
+
+  /** Your zod validator (for now) */
+  validator: z.ZodSchema,
+
+  /** onSubmit callback called before the mutation.mutate() */
+  onSubmit?: (e: SubmitEvent) => void,
+
+  /**
+   * whether the submitHandler should call preventDefault,
+   * @default true,
+   * shorthand for `onSubmit: (e) => e.preventDefault()`
+   **/
+  preventDefault?: boolean,
+
+  /**
+   * When to validate the form
+   * @default ["change", "submit"]
+   **/
+  validateOn?: ("change" | "submit")[];
+} & UseMutationOptions; // all options from useMutation e.g. onSuccess, etc...
+
+const form = useTRPCForm(opts: UseFormOptions);
+
+// ref to the form: `<form ref={form.ref}>`
+form.ref;
+
+// validate the form whenever you want
+form.validate();
+
+// the SafeParseResult from zod validation
+form.validation;
+
+// status indicator whether the form is submitting
+form.isSubmitting;
+
+// access to all your form fields as a proxy (only 1 level deep for now but will handle nested props later)
+form.user.name(); // returns the name prop
+form.user.name.id(); // returns the id prop
+```
+
 ## Demo
 
 Open in CodeSandbox:
@@ -43,4 +89,4 @@ export const MyForm = () => {
     </form>
   );
 };
-```
+````

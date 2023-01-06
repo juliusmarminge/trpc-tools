@@ -29,7 +29,7 @@ export type UseTRPCFormProps<
   /** Called when the form is submitted */
   onSubmit?: (
     event: TRPCFormSubmitEvent<inferProcedureInput<TProcedure>>,
-  ) => void;
+  ) => void | Promise<void>;
 
   /**
    * Whether preventDefault should be called before the onSubmit handler
@@ -79,4 +79,5 @@ export type UseTRPCFormResult<
   form: HTMLFormElement | null;
   validate: () => SafeParseReturn<TProcedure>;
   validation: SafeParseReturn<TProcedure> | null;
+  isSubmitting: boolean;
 } & DecorateField<ZodType<TInput>>;

@@ -39,6 +39,7 @@ export function useTRPCForm<TProcedure extends AnyMutationProcedure>(
 
   const [validation, setValidation] =
     useState<SafeParseReturn<TProcedure> | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validate = useCallback(() => {
     if (!formRef.current) throw new Error("Error: Form not mounted");
@@ -62,12 +63,16 @@ export function useTRPCForm<TProcedure extends AnyMutationProcedure>(
       if (!formState.success) return e.preventDefault();
 
       if (opts.preventDefault) e.preventDefault();
-      opts.onSubmit?.({
-        preventDefault: () => e.preventDefault(),
-        target: e.target as HTMLFormElement,
-        data: formState.data,
-      });
-      actions.mutate(formState.data);
+      void (async () => {
+        setIsSubmitting(true);
+        await opts.onSubmit?.({
+          preventDefault: () => e.preventDefault(),
+          target: e.target as HTMLFormElement,
+          data: formState.data,
+        });
+        setIsSubmitting(false);
+        actions.mutate(formState.data);
+      })();
     },
     [validate],
   );
@@ -99,6 +104,7 @@ export function useTRPCForm<TProcedure extends AnyMutationProcedure>(
         if (key === "ref") return callbackRef;
         if (key === "validate") return validate;
         if (key === "validation") return validation;
+        if (key === "isSubmitting") return actions.isLoading || isSubmitting;
 
         return createRecursiveProxy(($path, args) => {
           const fullPath = [key, ...$path];
@@ -123,6 +129,6 @@ export function useTRPCForm<TProcedure extends AnyMutationProcedure>(
           }
         });
       }),
-    [callbackRef, validate, validation],
+    [callbackRef, validate, validation, actions.isLoading, isSubmitting],
   );
 }
