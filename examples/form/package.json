@@ -5,7 +5,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "lint": "eslint . --ignore-path ../../.eslintrc.js"
+    "lint": "eslint . --ignore-path ../../.gitignore"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.20.9",
@@ -25,7 +25,6 @@
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.10",
     "eslint": "^8.31.0",
-    "eslint-config-next": "^13.1.1",
     "typescript": "^4.9.4"
   }
 }
