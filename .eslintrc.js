@@ -5,13 +5,16 @@ module.exports = {
   parserOptions: {
     tsconfigRootDir: __dirname,
     project: [
-      "./tsconfig.json",
+      "./tsconfig.eslint.json",
       "./examples/*/tsconfig.json",
       "./packages/*/tsconfig.json",
     ],
   },
   plugins: ["@typescript-eslint"],
-  extends: ["plugin:@typescript-eslint/recommended"],
+  extends: [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+  ],
   rules: {
     "@typescript-eslint/no-unused-vars": [
       "error",

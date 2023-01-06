@@ -6,19 +6,19 @@
     "build": "turbo build",
     "dev": "turbo dev --parallel",
     "format": "prettier --write .",
-    "lint": "turbo lint",
+    "lint": "turbo lint && manypkg check",
     "type-check": "turbo type-check"
   },
   "dependencies": {
     "@manypkg/cli": "^0.19.2",
-    "@typescript-eslint/eslint-plugin": "^5.44.0",
-    "@typescript-eslint/parser": "^5.44.0",
-    "eslint": "^8.28.0",
-    "prettier": "^2.7.1",
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
+    "@typescript-eslint/parser": "^5.48.0",
+    "eslint": "^8.31.0",
+    "prettier": "^2.8.1",
     "turbo": "^1.6.3",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.4"
   },
-  "packageManager": "pnpm@7.17.0",
+  "packageManager": "pnpm@7.22.0",
   "engines": {
     "node": ">=16.0.0"
   }
