@@ -8,7 +8,7 @@ import {
   inferProcedureInput,
   inferProcedureOutput,
 } from "@trpc/server";
-import { ZodIssue, ZodType } from "zod";
+import { SafeParseReturnType, ZodIssue, ZodType } from "zod";
 
 export type TRPCFormSubmitEvent<TData> = {
   preventDefault: () => void;
@@ -65,12 +65,18 @@ type DecorateField<TSchema extends ZodType> = {
       };
 };
 
+export type SafeParseReturn<TProcedure extends AnyMutationProcedure> =
+  SafeParseReturnType<
+    TProcedure["_def"]["_input_in"],
+    TProcedure["_def"]["_input_out"]
+  >;
+
 export type UseTRPCFormResult<
   TProcedure extends AnyMutationProcedure,
   TInput = inferProcedureInput<TProcedure>,
 > = {
   ref: () => void;
   form: HTMLFormElement | null;
-  validate: () => ReturnType<ZodType<TInput>["safeParse"]>;
-  validation: ReturnType<ZodType<TInput>["safeParse"]>;
+  validate: () => SafeParseReturn<TProcedure>;
+  validation: SafeParseReturn<TProcedure> | null;
 } & DecorateField<ZodType<TInput>>;

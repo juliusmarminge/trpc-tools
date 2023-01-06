@@ -1,8 +1,8 @@
 import type { AnyMutationProcedure } from "@trpc/server";
 import { useCallback, useMemo, useRef, useState } from "react";
-import { SafeParseReturnType, z } from "zod";
+import { z } from "zod";
 import { createFlatProxy, createRecursiveProxy } from "./proxy";
-import { UseTRPCFormProps, UseTRPCFormResult } from "./types";
+import { SafeParseReturn, UseTRPCFormProps, UseTRPCFormResult } from "./types";
 
 function parseOptions<TProcedure extends AnyMutationProcedure>(
   opts: UseTRPCFormProps<TProcedure>,
@@ -23,10 +23,6 @@ function parseForm<TData>(form: HTMLFormElement, schema: z.ZodType<TData>) {
 export function useTRPCForm<TProcedure extends AnyMutationProcedure>(
   props: UseTRPCFormProps<TProcedure>,
 ) {
-  type TValidation = SafeParseReturnType<
-    TProcedure["_def"]["_input_in"],
-    TProcedure["_def"]["_input_out"]
-  >;
   const opts = parseOptions(props);
 
   const formRef = useRef<HTMLFormElement>();
@@ -41,7 +37,8 @@ export function useTRPCForm<TProcedure extends AnyMutationProcedure>(
   });
   // const { path: formNamespace } = actions.trpc;
 
-  const [validation, setValidation] = useState<TValidation | null>(null);
+  const [validation, setValidation] =
+    useState<SafeParseReturn<TProcedure> | null>(null);
 
   const validate = useCallback(() => {
     if (!formRef.current) throw new Error("Error: Form not mounted");
