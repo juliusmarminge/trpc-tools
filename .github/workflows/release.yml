@@ -1,29 +1,27 @@
-name: CI
-
+name: Release
 on:
-  pull_request:
-    branches: ["*"]
   push:
-    branches: ["main"]
+    branches:
+      - main
 
 env:
   TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
   TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
 
 jobs:
-  build-lint:
-    env:
-      DATABASE_URL: file:./db.sqlite
+  release:
+    name: Release
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-      - name: Setup pnpm
+      - name: Use PNPM
         uses: pnpm/action-setup@v2.2.4
 
-      - name: Setup Node 18
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -44,14 +42,16 @@ jobs:
       - name: Install deps (with cache)
         run: pnpm install
 
-      - name: Next.js cache
-        uses: actions/cache@v3
+      - name: Build
+        run: pnpm turbo build
+
+      - name: Create Release
+        uses: changesets/action@v1.4.1
         with:
-          path: ${{ github.workspace }}apps/nextjs/.next/cache
-          key: ${{ runner.os }}-${{ runner.node }}-${{ hashFiles('**/pnpm-lock.yaml') }}-nextjs
-
-      - name: Build, lint and type-check
-        run: pnpm turbo build lint type-check
-
-      - name: Check workspaces
-        run: pnpm manypkg check
+          commit: "chore(release): 📦 version packages"
+          title: "chore(release): 📦  version packages"
+          version: node .github/changeset-version.js
+          publish: pnpm changeset publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
