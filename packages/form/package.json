@@ -1,7 +1,7 @@
 {
   "name": "trpc-form",
   "description": "form library tightly coupled with trpc mutations",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "keywords": [
     "trpc",
     "form",

@@ -1,5 +1,11 @@
 # trpc-form
 
+## 0.1.0
+
+### Minor Changes
+
+- [#4](https://github.com/juliusmarminge/trpc-tools/pull/4) [`f3cb06d`](https://github.com/juliusmarminge/trpc-tools/commit/f3cb06d1f948226248eec1884c57830a5bf41620) Thanks [@juliusmarminge](https://github.com/juliusmarminge)! - feat: call e.preventDefault() automatically unless opted out
+
 ## 0.0.2
 
 ### Patch Changes
